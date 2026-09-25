@@ -1,0 +1,254 @@
+/* Fondo espacial con estrellas animadas */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(ellipse at top left, #23234f 0%, #0d102f 100%);
+    color: #eaeaea;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: url('https://raw.githubusercontent.com/Julian-Nash/starfield/master/starfield.png') repeat;
+    opacity: 0.18;
+    animation: starsMove 60s linear infinite;
+}
+@keyframes starsMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+/* Contenedor principal */
+#contenedor-principal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 32px 20px 20px 20px;
+    gap: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Calendario */
+#calendario {
+    flex: 1 1 60%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+    overflow: visible;
+    background: rgba(35,35,79,0.7);
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 8px 32px #23234f88;
+}
+
+#calendario > div {
+    overflow: visible;
+    min-width: 0;
+}
+
+/* Cabecera del calendario (mes y año) */
+.cabecera {
+    display: block;
+    text-align: center;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffd700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px #23234f;
+}
+
+/* Tabla de días */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: linear-gradient(135deg, #23234f 60%, #18183a 100%);
+    border-radius: 14px;
+    overflow: visible;
+    box-shadow: 0 2px 12px #23234f55;
+}
+table th, table td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #444;
+    color: #eaeaea;
+    width: 14.28%;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: background 0.3s, color 0.3s;
+}
+
+table th {
+    background: #23234f;
+    font-weight: bold;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+table td {
+    cursor: pointer;
+    background: #18183a;
+}
+table td:hover {
+    background: #ffd700;
+    color: #23234f;
+    font-weight: bold;
+    box-shadow: 0 0 12px #ffd70088;
+}
+
+/* Contenedor de la imagen */
+#foto {
+    flex: 1 1 35%;
+    background: linear-gradient(135deg, #23234f 60%, #18183a 100%);
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px #23234f88;
+    max-width: 400px;
+    min-width: 260px;
+    position: relative;
+    z-index: 1;
+}
+
+#foto img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 2px solid #ffd700;
+    box-shadow: 0 8px 32px #23234f, 0 0 40px #ffd70044 inset;
+    background: #18183a;
+    margin-bottom: 18px;
+}
+
+#foto h2 {
+    color: #ffd700;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 8px #23234f;
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+    #contenedor-principal {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+    }
+    #calendario {
+        flex: 1 1 100%;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 20px;
+        gap: 32px;
+    }
+    #foto {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-width: 180px;
+        margin-top: 18px;
+    }
+}
+@media (max-width: 600px) {
+    #calendario {
+        grid-template-columns: 1fr;
+        padding: 14px;
+        gap: 24px;
+    }
+    #foto {
+        padding: 12px;
+    }
+}
+/* Meses: cada mes en columna con espacio */
+.meses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px 48px; /* Espacio horizontal y vertical entre meses */
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.mes-calendario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    max-width: 340px;
+    margin-bottom: 0;
+    background: linear-gradient(135deg, #23234f 60%, #1a1a2e 100%);
+    border-radius: 22px;
+    padding: 22px 16px 28px 16px;
+    box-shadow: 0 8px 32px #23234f88, 0 0 32px #ffd70022 inset;
+    border: 2px solid #ffd700;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.mes-calendario:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 48px #ffd70055, 0 0 32px #ffd70044 inset;
+    border-color: #fffbe7;
+}
+/* Nombre del mes */
+.mes-nombre {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #ffd700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px #23234f, 0 0 24px #ffd70055;
+    margin-bottom: 18px;
+    margin-top: 4px;
+    text-align: center;
+    background: linear-gradient(90deg, #23234f 0%, #ffd700 100%);
+    border-radius: 8px;
+    padding: 8px 0;
+    width: 90%;
+    box-shadow: 0 2px 12px #23234f44;
+    border: 1px solid #ffd700;
+}
+
+/* Calendario de cada mes */
+.mes-calendario table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    background: linear-gradient(135deg, #23234f 60%, #18183a 100%);
+    border-radius: 14px;
+    overflow: visible;
+    box-shadow: 0 2px 12px #23234f55;
+}
+.mes-calendario th, .mes-calendario td {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #444;
+    color: #eaeaea;
+    width: 14.28%;
+    height: 48px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: background 0.3s, color 0.3s;
+}
+
+.mes-calendario th {
+    background: #23234f;
+    font-weight: bold;
+    color: #ffd700;
+    letter-spacing: 1px;
+}
+
+.mes-calendario td {
+    cursor: pointer;
+    background: #18183a;
+}
+.mes-calendario td:hover {
+    background: #ffd700;
+    color: #23234f;
+    font-weight: bold;
+    box-shadow: 0 0 12px #ffd70088;
+}

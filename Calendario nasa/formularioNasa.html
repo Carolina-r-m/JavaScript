@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foto del Día - NASA</title>
+    <link rel="stylesheet" href="formNasa.css">
+</head>
+<body>
+    <main class="pagina">
+        <header class="encabezado">
+            <p class="eyebrow">NASA / APOD</p>
+            <h1>Foto astronómica del día</h1>
+            <p class="intro">Elige una fecha y descubre la imagen que la NASA seleccionó para ese día.</p>
+        </header>
+
+        <form id="formulario">
+            <label for="calendario">Selecciona una fecha</label>
+            <div class="controles-formulario">
+                <input type="date" id="calendario" required>
+                <button type="submit">Buscar imagen</button>
+            </div>
+        </form>
+
+        <section id="foto" aria-live="polite"></section>
+    </main>
+    <script src="formNasaV4.js"></script>
+</body>
+</html>

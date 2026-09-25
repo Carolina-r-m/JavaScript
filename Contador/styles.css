@@ -1,0 +1,87 @@
+/* Estilo monocromo elegante para el contador */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  text-align: center;
+  background: #181818;
+  color: #eaeaea;
+  margin: 0;
+  padding: 50px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #eaeaea;
+  font-size: 2.5em;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 12px #0008;
+  margin-bottom: 32px;
+}
+
+#valor {
+  font-size: 4em;
+  margin: 30px 0;
+  color: #eaeaea;
+  background: #222;
+  border-radius: 18px;
+  padding: 24px 48px;
+  box-shadow: 0 8px 32px #0006;
+  display: inline-block;
+  transition: transform 0.2s, background 0.3s;
+  border: 2px solid #444;
+}
+
+#valor.changed {
+  animation: pop 0.3s;
+  background: #333;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.botones {
+  margin-top: 24px;
+}
+
+button {
+  font-size: 1.2em;
+  margin: 12px;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 16px #0004;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: #222;
+  color: #eaeaea;
+  border: 2px solid #444;
+}
+
+button:hover, button:focus {
+  background: #333;
+  color: #fff;
+  box-shadow: 0 8px 32px #0008;
+  transform: translateY(-2px) scale(1.05);
+  outline: none;
+}
+
+#cronometro {
+  background: #181818;
+  color: #eaeaea;
+  border: 2px solid #444;
+}
+
+@media (max-width: 600px) {
+  #valor {
+    font-size: 2.2em;
+    padding: 12px 18px;
+  }
+  button {
+    font-size: 1em;
+    padding: 10px 18px;
+  }
+}

@@ -1,0 +1,182 @@
+:root {
+    --fondo: #090d1f;
+    --panel: rgba(19, 27, 57, 0.9);
+    --panel-claro: #1b2750;
+    --texto: #f3f5ff;
+    --texto-suave: #aab5d6;
+    --acento: #ffd166;
+    --borde: rgba(255, 209, 102, 0.35);
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at 15% 0%, #25356a 0%, var(--fondo) 52%);
+    color: var(--texto);
+    margin: 0;
+    padding: 32px 20px 64px;
+    text-align: center;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: url('https://raw.githubusercontent.com/Julian-Nash/starfield/master/starfield.png') repeat;
+    opacity: 0.18;
+    animation: starsMove 60s linear infinite;
+}
+@keyframes starsMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 1000px 1000px; }
+}
+
+.pagina {
+    width: min(100%, 920px);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.encabezado {
+    max-width: 680px;
+    margin: 0 auto 28px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    color: var(--acento);
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.18em;
+}
+
+h1 {
+    margin: 0;
+    color: var(--texto);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+}
+
+.intro {
+    margin: 16px auto 0;
+    color: var(--texto-suave);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+form {
+    width: min(100%, 700px);
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: left;
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--texto);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.controles-formulario {
+    display: flex;
+    gap: 12px;
+}
+
+form input[type="date"] {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #52628e;
+    border-radius: 8px;
+    font: inherit;
+    background: var(--fondo);
+    color: var(--texto);
+    color-scheme: dark;
+}
+
+form input[type="date"]:focus,
+form button:focus-visible {
+    outline: 3px solid rgba(255, 209, 102, 0.35);
+    outline-offset: 2px;
+    border-color: var(--acento);
+}
+
+form button {
+    padding: 13px 22px;
+    color: #16182b;
+    background: var(--acento);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: transform 0.2s, background 0.2s;
+}
+form button:hover {
+    background: #ffe29a;
+    transform: translateY(-2px);
+}
+
+#foto {
+    width: min(100%, 900px);
+    margin: 30px auto 0;
+    padding: 26px;
+    box-sizing: border-box;
+    text-align: left;
+    background: var(--panel);
+    border: 1px solid rgba(82, 98, 142, 0.65);
+    border-radius: 14px;
+    line-height: 1.7;
+}
+
+#foto h2 {
+    margin-top: 0;
+    color: var(--acento);
+    font-size: 1.5em;
+}
+
+#foto img {
+    display: block;
+    width: 100%;
+    max-height: 620px;
+    margin-top: 24px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid var(--borde);
+    background: var(--fondo);
+}
+
+/* Responsividad */
+@media (max-width: 900px) {
+    body {
+        padding: 24px 16px 40px;
+    }
+}
+@media (max-width: 600px) {
+    .controles-formulario {
+        flex-direction: column;
+    }
+
+    form button,
+    form input[type="date"] {
+        width: 100%;
+    }
+
+    #foto {
+        padding: 20px 16px;
+    }
+}
