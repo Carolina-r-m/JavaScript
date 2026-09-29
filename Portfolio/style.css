@@ -1,12 +1,11 @@
 /* =========================================================
-   ESTILOS DE MI PORTFOLIO
-   Idea: que parezca un cuaderno de cuadros con post-its,
-   como los apuntes que tengo por la mesa
-   ========================================================= */
+  Estilos de mi portfolio
+  He intentado que parezca un cuaderno con post-its
+  ========================================================= */
 
-/* --- Variables CSS: así cambio los colores en un solo sitio (¡qué comodidad!) --- */
+/* --- Variables CSS para tener los colores organizados --- */
 :root {
-  --papel: #f6f2ff;          /* fondo lila muy clarito */
+  --papel: #f6f2ff;          /* fondo lila claro */
   --cuadros: #ddd3f5;        /* líneas de la cuadrícula */
   --tinta: #5b2fd6;          /* violeta principal */
   --texto: #1d1633;          /* texto normal */
@@ -16,7 +15,7 @@
   --sombra: rgba(91, 47, 214, 0.2);
 }
 
-/* --- Modo oscuro: el JS le pone data-tema="oscuro" al <html> y estos valores pisan a los de arriba --- */
+/* --- Colores del modo oscuro --- */
 [data-tema="oscuro"] {
   --papel: #16112b;
   --cuadros: #251d47;
@@ -26,14 +25,14 @@
   --sombra: rgba(0, 0, 0, 0.5);
 }
 
-/* --- Reset básico: el profe dice que siempre hay que quitar los márgenes por defecto --- */
+/* --- Reset básico para empezar con los mismos estilos --- */
 * {
-  box-sizing: border-box; /* así el padding no me rompe los anchos */
+  box-sizing: border-box; /* el padding se incluye en el tamaño */
   margin: 0;
   padding: 0;
 }
 
-/* Scroll suave al pulsar los enlaces del menú */
+/* Desplazamiento suave entre las secciones */
 html {
   scroll-behavior: smooth;
 }
@@ -42,7 +41,7 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
   color: var(--texto);
   background-color: var(--papel);
-  /* La cuadrícula del cuaderno la hago con dos degradados lineales (truco de internet, lo confieso) */
+  /* Creo la cuadrícula del fondo con dos degradados */
   background-image:
     linear-gradient(var(--cuadros) 1px, transparent 1px),
     linear-gradient(90deg, var(--cuadros) 1px, transparent 1px);
@@ -51,7 +50,7 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-/* Línea roja del margen a la izquierda, como en los cuadernos de verdad */
+/* Línea del margen del cuaderno */
 body::before {
   content: "";
   position: fixed;
@@ -61,12 +60,12 @@ body::before {
   width: 2px;
   background: var(--margen);
   opacity: 0.5;
-  pointer-events: none; /* para que no bloquee los clics */
+  pointer-events: none; /* no debe bloquear los clics */
 }
 
-/* --- CABECERA --- */
+/* --- Cabecera --- */
 .cabecera {
-  position: sticky; /* se queda arriba al hacer scroll */
+  position: sticky; /* se mantiene arriba al hacer scroll */
   top: 0;
   z-index: 10;
   display: flex;
@@ -98,12 +97,12 @@ body::before {
   font-weight: 500;
 }
 
-/* Al pasar el ratón sale un subrayado tipo rotulador */
+/* Subrayado de los enlaces al pasar el ratón */
 .cabecera nav a:hover {
   background: linear-gradient(transparent 55%, var(--subrayador) 55%);
 }
 
-/* Botón del tema: redondo y sencillo */
+/* Botón para cambiar el tema */
 .btn-tema {
   border: 2px solid var(--tinta);
   background: var(--tarjeta);
@@ -114,12 +113,12 @@ body::before {
   cursor: pointer;
 }
 
-/* --- SECCIONES GENERALES --- */
+/* --- Secciones generales --- */
 .seccion,
 .hero {
   max-width: 900px;
   margin: 0 auto;
-  padding: 4rem 1.5rem 4rem 90px; /* el padding izquierdo grande es para no pisar el margen rojo */
+  padding: 4rem 1.5rem 4rem 90px; /* dejo espacio para la línea del margen */
 }
 
 h2 {
@@ -130,7 +129,7 @@ h2 {
 }
 
 .texto-largo {
-  max-width: 60ch; /* líneas cortitas para que se lea mejor */
+  max-width: 60ch; /* para que los párrafos sean fáciles de leer */
   margin-bottom: 1.5rem;
 }
 
@@ -139,7 +138,7 @@ h2 {
   opacity: 0.75;
 }
 
-/* --- HERO --- */
+/* --- Primera sección --- */
 .hero {
   padding-top: 6rem;
 }
@@ -148,13 +147,13 @@ h2 {
   font-family: "Caveat", cursive;
   font-size: 2rem;
   color: var(--margen);
-  transform: rotate(-3deg); /* torcidito, como escrito a mano */
+  transform: rotate(-3deg); /* efecto de texto escrito a mano */
   display: inline-block;
 }
 
 h1 {
   font-family: "Caveat", cursive;
-  font-size: clamp(3.5rem, 12vw, 7rem); /* clamp: crece con la pantalla pero con límites */
+  font-size: clamp(3.5rem, 12vw, 7rem); /* tamaño adaptable a la pantalla */
   line-height: 1;
   color: var(--tinta);
   margin-bottom: 1rem;
@@ -162,36 +161,36 @@ h1 {
 
 .hero-texto {
   font-size: 1.3rem;
-  line-height: 1.9; /* más interlineado para que el resaltado no se pise entre líneas */
+  line-height: 1.9; /* dejo espacio entre las líneas */
   max-width: 40ch;
-  min-height: 8.5rem; /* reservo altura para que la página no salte al escribir */
+  min-height: 8.5rem; /* evito que la página salte al escribir */
 }
 
-/* El rol en grande y en violeta, para que se lea lo primero */
+/* Estilo del texto que indica mi rol */
 .rol {
   font-family: "Caveat", cursive;
   font-size: 2rem;
   color: var(--tinta);
 }
 
-/* El texto que se escribe sale como si lo hubiera marcado con fosforito */
+/* Resalto el texto que se escribe */
 .resaltado {
   background: var(--subrayador);
-  color: #1d1633; /* siempre oscuro porque la menta es clara */
+  color: #1d1633; /* se lee mejor sobre el fondo claro */
   font-weight: 600;
   padding: 0.1em 0.45em;
   border-radius: 6px;
-  /* clone hace que si salta de línea, cada trozo conserve sus bordes y padding */
+  /* Mantengo el fondo correctamente aunque el texto salte de línea */
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
 
-/* Si todavía no ha escrito nada, escondo la etiqueta vacía para que no se vea una manchita */
+/* Oculto el espacio del texto mientras todavía está vacío */
 .resaltado:empty {
   display: none;
 }
 
-/* Cursor parpadeante con @keyframes (animación, ¡mola!) */
+/* Cursor parpadeante */
 .cursor {
   color: var(--margen);
   font-weight: 700;
@@ -209,7 +208,7 @@ h1 {
   margin: 2rem 0 1.5rem;
 }
 
-/* --- BOTONES --- */
+/* --- Botones --- */
 .btn {
   display: inline-block;
   padding: 0.7rem 1.4rem;
@@ -232,7 +231,7 @@ h1 {
   box-shadow: 4px 4px 0 var(--sombra);
 }
 
-/* Al pasar el ratón el botón "se hunde" (efecto de que lo pulsas) */
+/* Efecto de los botones al pasar el ratón */
 .btn:hover {
   transform: translate(3px, 3px);
   box-shadow: 1px 1px 0 var(--sombra);
@@ -249,7 +248,7 @@ h1 {
   cursor: pointer;
 }
 
-/* Clase que añado y quito desde JS para que el botón "salte" */
+/* Animación que uso en el contador de cafés */
 .btn-cafe.salto {
   animation: salto 0.35s ease;
 }
@@ -257,7 +256,7 @@ h1 {
   40% { transform: scale(1.12) rotate(-2deg); }
 }
 
-/* --- Ventana de código del hero: el toque friki, pero limpio --- */
+/* --- Ventana de código de la primera sección --- */
 .codigo {
   position: relative;
   max-width: 420px;
@@ -269,11 +268,11 @@ h1 {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.9rem;
   line-height: 1.7;
-  overflow-x: auto; /* si no cabe, scroll dentro de la caja */
+  overflow-x: auto; /* permite desplazarse si el código no cabe */
   box-shadow: 6px 6px 0 var(--sombra);
 }
 
-/* Los tres puntitos de una ventana, hechos con una sola caja y box-shadow (truco) */
+/* Los tres puntos de la ventana de código */
 .codigo::before {
   content: "";
   position: absolute;
@@ -287,12 +286,12 @@ h1 {
 }
 
 .codigo .k { color: #ff7ac6; } /* palabras reservadas */
-.codigo .s { color: #7df9d6; } /* strings */
+.codigo .s { color: #7df9d6; } /* textos */
 
-/* --- SKILLS (post-its) --- */
+/* --- Habilidades en forma de post-its --- */
 .skills-grid {
   display: grid;
-  /* auto-fit + minmax = columnas responsive sin media queries (¡Grid es lo mejor!) */
+  /* Las columnas se adaptan al tamaño disponible */
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 1.5rem;
 }
@@ -305,13 +304,13 @@ h1 {
   transition: transform 0.2s;
 }
 
-/* Colores de cada post-it */
+/* Colores de los post-its */
 .amarillo { background: #ffe66d; }
 .rosa     { background: #ffb8dd; }
 .azul     { background: #cbb8ff; }
 .verde    { background: #a8f5dc; }
 
-/* Cada post-it un poquito torcido: nth-child(odd/even) alterna los giros */
+/* Alterno la inclinación de los post-its */
 .post-it:nth-child(odd)  { transform: rotate(-2deg); }
 .post-it:nth-child(even) { transform: rotate(1.5deg); }
 .post-it:hover           { transform: rotate(0) scale(1.05); }
@@ -331,7 +330,7 @@ h1 {
 
 .relleno {
   height: 100%;
-  width: 0; /* empieza vacía y el JS la llena */
+  width: 0; /* la barra empieza vacía */
   background: #1b1f2a;
   border-radius: 99px;
   transition: width 1s ease;
@@ -342,7 +341,7 @@ h1 {
   font-size: 0.9rem;
 }
 
-/* --- PROYECTOS --- */
+/* --- Proyectos --- */
 .filtros {
   display: flex;
   gap: 0.6rem;
@@ -361,7 +360,7 @@ h1 {
   cursor: pointer;
 }
 
-/* El filtro que está seleccionado se rellena */
+/* Estilo del filtro seleccionado */
 .filtro.activo {
   background: var(--tinta);
   color: var(--papel);
@@ -396,12 +395,12 @@ h1 {
   font-weight: 600;
 }
 
-/* Clase que uso desde JS para esconder proyectos al filtrar */
+/* Clase que JavaScript usa para ocultar proyectos */
 .oculto {
   display: none;
 }
 
-/* --- PIE --- */
+/* --- Pie de página --- */
 .pie {
   text-align: center;
   padding: 2rem 1rem;
@@ -409,14 +408,14 @@ h1 {
   background: var(--papel);
 }
 
-/* Accesibilidad: foco visible para quien navega con teclado (lo pedían en la práctica de DIW) */
+/* Foco visible para poder navegar con el teclado */
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--margen);
   outline-offset: 3px;
 }
 
-/* Si el usuario tiene activado "reducir movimiento", quito las animaciones */
+/* Respeto la preferencia de reducir el movimiento */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -425,13 +424,13 @@ button:focus-visible {
   }
 }
 
-/* --- MEDIA QUERY para móviles (mobile first sería lo ideal, pero bueno) --- */
+/* --- Ajustes para pantallas pequeñas --- */
 @media (max-width: 640px) {
   .cabecera {
     padding-left: 1rem;
     flex-wrap: wrap;
   }
-  /* En móvil la línea roja se mueve para no comer espacio */
+  /* En móvil acerco la línea al borde */
   body::before { left: 20px; }
   .seccion,
   .hero {

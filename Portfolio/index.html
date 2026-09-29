@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<!-- Esto le dice al navegador "oye, esto es HTML5" (lo vimos el primer día de clase) -->
+<!-- Indicamos que estamos usando HTML5 -->
 <html lang="es">
 <head>
-  <!-- Para que se vean bien las tildes y la ñ, que si no sale todo raro -->
+  <!-- Para que se vean bien las tildes y la ñ -->
   <meta charset="UTF-8" />
-  <!-- Para que se vea bien en el móvil (me lo explicó el profe de Diseño de Interfaces) -->
+  <!-- Esto ayuda a que la página se adapte al móvil -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Carolina | Desarrolladora web</title>
   <meta name="description" content="Portfolio de Carolina, desarrolladora web" />
 
-  <!-- Fuentes de Google: Caveat parece letra a mano y Plex Sans es para leer bien -->
+  <!-- Fuentes que uso para darle un estilo más personal al portfolio -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
-  <!-- Aquí enlazo mi CSS (el archivo está en la misma carpeta) -->
+  <!-- Enlazo el archivo CSS de la página -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ===== CABECERA / NAVEGACIÓN ===== -->
+  <!-- Cabecera y menú de navegación -->
   <header class="cabecera">
     <a href="#inicio" class="logo">&lt;/carolina&gt;</a>
 
     <nav aria-label="Navegación principal">
-      <!-- Enlaces internos con # que saltan a cada sección, fácil -->
+      <!-- Estos enlaces llevan a las distintas secciones de la página -->
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#skills">Skills</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#contacto">Contacto</a>
     </nav>
 
-    <!-- Botón modo oscuro: el JS le cambia el emoji y el tema -->
+    <!-- Botón para cambiar entre el modo claro y el oscuro -->
     <button id="btn-tema" class="btn-tema" aria-label="Cambiar entre modo claro y oscuro">🌙</button>
   </header>
 
   <main>
 
-    <!-- ===== HERO: lo primero que ve la gente ===== -->
+    <!-- Primera parte de la página -->
     <section id="inicio" class="hero">
       <p class="nota-mano">Hola, soy</p>
-      <!-- Aquí va el nombre de Carolina, que es la dueña del portfolio -->
+      <!-- Mi nombre aparece como título principal -->
       <h1>Carolina</h1>
       <p class="hero-texto">
         <strong class="rol">Desarrolladora web</strong><br />
         Ahora mismo estoy aprendiendo
-        <!-- Este span lo rellena el JS con el efecto de escribir a máquina -->
+        <!-- JavaScript escribe aquí las frases del efecto de máquina -->
         <span id="escritura" class="resaltado"></span><span class="cursor">|</span>
       </p>
 
@@ -55,7 +55,7 @@
         <a href="https://github.com/Carolina-r-m" class="btn btn-secundario" target="_blank" rel="noopener">Mi GitHub</a>
       </div>
 
-      <!-- Mi perfil escrito como un objeto de JavaScript (el toque friki) -->
+      <!-- Un pequeño resumen de mi perfil con formato de código -->
       <pre class="codigo" aria-label="Resumen de mi perfil en formato código"><code><span class="k">const</span> carolina = {
   rol: <span class="s">"Desarrolladora web"</span>,
   stack: [<span class="s">"Java"</span>, <span class="s">"PHP"</span>, <span class="s">"JavaScript"</span>],
@@ -63,11 +63,11 @@
   friki: <span class="k">true</span>
 };</code></pre>
 
-      <!-- Contador de cafés: no sirve para nada pero mola y practico eventos -->
+      <!-- Contador de cafés para practicar eventos con JavaScript -->
       <button id="btn-cafe" class="btn-cafe">☕ Cafés compilados hoy: <strong id="num-cafes">0</strong></button>
     </section>
 
-    <!-- ===== SOBRE MÍ ===== -->
+    <!-- Sección sobre mí -->
     <section id="sobre-mi" class="seccion">
       <h2>Sobre mí</h2>
       <p class="texto-largo">
@@ -79,13 +79,13 @@
       </p>
     </section>
 
-    <!-- ===== SKILLS ===== -->
+    <!-- Sección de habilidades -->
     <section id="skills" class="seccion">
       <h2>Skills</h2>
       <p class="pista">Pasa el ratón por encima o haz clic para ver mi nivel.</p>
 
       <div class="skills-grid">
-        <!-- Cada tarjeta lleva data-nivel y el JS lo pinta en la barra -->
+        <!-- El atributo data-nivel indica el porcentaje de cada habilidad -->
         <article class="skill post-it amarillo" data-nivel="85">
           <h3>HTML</h3>
           <div class="barra"><div class="relleno"></div></div>
@@ -124,11 +124,11 @@
       </div>
     </section>
 
-    <!-- ===== PROYECTOS ===== -->
+    <!-- Sección de proyectos -->
     <section id="proyectos" class="seccion">
       <h2>Proyectos</h2>
 
-      <!-- Botones para filtrar: cada uno tiene un data-filtro que uso en el JS -->
+      <!-- Botones para filtrar los proyectos por lenguaje -->
       <div class="filtros" role="group" aria-label="Filtrar proyectos">
         <button class="filtro activo" data-filtro="todos">Todos</button>
         <button class="filtro" data-filtro="java">Java</button>
@@ -137,8 +137,8 @@
       </div>
 
       <div class="proyectos-grid">
-        <!-- Estos son los repositorios reales de Carolina en GitHub -->
-        <!-- target="_blank" abre el enlace en otra pestaña y rel="noopener" es por seguridad -->
+        <!-- Enlaces a mis repositorios de GitHub -->
+        <!-- Abro los enlaces en otra pestaña y uso noopener por seguridad -->
         <article class="proyecto" data-categoria="java">
           <h3>Proyectos en Java</h3>
           <p>Mis ejercicios y programas en Java, con programación orientada a objetos.</p>
@@ -159,23 +159,23 @@
       </div>
     </section>
 
-    <!-- ===== CONTACTO ===== -->
+    <!-- Sección de contacto -->
     <section id="contacto" class="seccion contacto">
       <h2>Contacto</h2>
       <p class="texto-largo">¿Tienes un proyecto o una oportunidad? Escríbeme y lo hablamos.</p>
-      <!-- Mi correo real, para que me escriban -->
+      <!-- Enlace para contactar conmigo por correo -->
       <a href="mailto:carolinardmuriel@gmail.com" class="btn btn-principal">carolinardmuriel@gmail.com</a>
     </section>
 
   </main>
 
-  <!-- ===== PIE DE PÁGINA ===== -->
+  <!-- Pie de página -->
   <footer class="pie">
-    <!-- El año lo pone el JS para no tener que cambiarlo cada enero -->
+    <!-- JavaScript añade el año actual automáticamente -->
     <p>Hecho con HTML, CSS y JS por Carolina · <span id="anio"></span></p>
   </footer>
 
-  <!-- El script va al final para que el HTML ya esté cargado cuando se ejecute -->
+  <!-- Cargo JavaScript al final para que el HTML ya esté preparado -->
   <script src="script.js"></script>
 </body>
 </html>
