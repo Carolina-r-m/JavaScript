@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!-- Esto le dice al navegador "oye, esto es HTML5" (lo vimos el primer día de clase) -->
+<html lang="es">
+<head>
+  <!-- Para que se vean bien las tildes y la ñ, que si no sale todo raro -->
+  <meta charset="UTF-8" />
+  <!-- Para que se vea bien en el móvil (me lo explicó el profe de Diseño de Interfaces) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carolina | Desarrolladora web</title>
+  <meta name="description" content="Portfolio de Carolina, desarrolladora web" />
+
+  <!-- Fuentes de Google: Caveat parece letra a mano y Plex Sans es para leer bien -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Aquí enlazo mi CSS (el archivo está en la misma carpeta) -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== CABECERA / NAVEGACIÓN ===== -->
+  <header class="cabecera">
+    <a href="#inicio" class="logo">&lt;/carolina&gt;</a>
+
+    <nav aria-label="Navegación principal">
+      <!-- Enlaces internos con # que saltan a cada sección, fácil -->
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#skills">Skills</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Botón modo oscuro: el JS le cambia el emoji y el tema -->
+    <button id="btn-tema" class="btn-tema" aria-label="Cambiar entre modo claro y oscuro">🌙</button>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO: lo primero que ve la gente ===== -->
+    <section id="inicio" class="hero">
+      <p class="nota-mano">Hola, soy</p>
+      <!-- Aquí va el nombre de Carolina, que es la dueña del portfolio -->
+      <h1>Carolina</h1>
+      <p class="hero-texto">
+        <strong class="rol">Desarrolladora web</strong><br />
+        Ahora mismo estoy aprendiendo
+        <!-- Este span lo rellena el JS con el efecto de escribir a máquina -->
+        <span id="escritura" class="resaltado"></span><span class="cursor">|</span>
+      </p>
+
+      <div class="hero-botones">
+        <a href="#proyectos" class="btn btn-principal">Ver mis proyectos</a>
+        <!-- Enlace a mi perfil de GitHub -->
+        <a href="https://github.com/Carolina-r-m" class="btn btn-secundario" target="_blank" rel="noopener">Mi GitHub</a>
+      </div>
+
+      <!-- Mi perfil escrito como un objeto de JavaScript (el toque friki) -->
+      <pre class="codigo" aria-label="Resumen de mi perfil en formato código"><code><span class="k">const</span> carolina = {
+  rol: <span class="s">"Desarrolladora web"</span>,
+  stack: [<span class="s">"Java"</span>, <span class="s">"PHP"</span>, <span class="s">"JavaScript"</span>],
+  cafe: <span class="k">true</span>,
+  friki: <span class="k">true</span>
+};</code></pre>
+
+      <!-- Contador de cafés: no sirve para nada pero mola y practico eventos -->
+      <button id="btn-cafe" class="btn-cafe">☕ Cafés compilados hoy: <strong id="num-cafes">0</strong></button>
+    </section>
+
+    <!-- ===== SOBRE MÍ ===== -->
+    <section id="sobre-mi" class="seccion">
+      <h2>Sobre mí</h2>
+      <p class="texto-largo">
+        Desarrolladora web con cabeza de ingeniera y alma de friki. Me gusta
+        el código limpio, los detalles bien cuidados y entender cómo funcionan
+        las cosas por dentro. Trabajo con Java, PHP y JavaScript, y sigo
+        aprendiendo cada día. Si algo falla, abro la consola: casi siempre
+        tiene la respuesta.
+      </p>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills" class="seccion">
+      <h2>Skills</h2>
+      <p class="pista">Pasa el ratón por encima o haz clic para ver mi nivel.</p>
+
+      <div class="skills-grid">
+        <!-- Cada tarjeta lleva data-nivel y el JS lo pinta en la barra -->
+        <article class="skill post-it amarillo" data-nivel="85">
+          <h3>HTML</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+
+        <article class="skill post-it rosa" data-nivel="75">
+          <h3>CSS</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+
+        <article class="skill post-it azul" data-nivel="65">
+          <h3>JavaScript</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+
+        <article class="skill post-it verde" data-nivel="60">
+          <h3>Java</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+
+        <article class="skill post-it amarillo" data-nivel="55">
+          <h3>PHP</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+
+        <article class="skill post-it rosa" data-nivel="70">
+          <h3>Git</h3>
+          <div class="barra"><div class="relleno"></div></div>
+          <span class="porcentaje">0%</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS ===== -->
+    <section id="proyectos" class="seccion">
+      <h2>Proyectos</h2>
+
+      <!-- Botones para filtrar: cada uno tiene un data-filtro que uso en el JS -->
+      <div class="filtros" role="group" aria-label="Filtrar proyectos">
+        <button class="filtro activo" data-filtro="todos">Todos</button>
+        <button class="filtro" data-filtro="java">Java</button>
+        <button class="filtro" data-filtro="php">PHP</button>
+        <button class="filtro" data-filtro="javascript">JavaScript</button>
+      </div>
+
+      <div class="proyectos-grid">
+        <!-- Estos son los repositorios reales de Carolina en GitHub -->
+        <!-- target="_blank" abre el enlace en otra pestaña y rel="noopener" es por seguridad -->
+        <article class="proyecto" data-categoria="java">
+          <h3>Proyectos en Java</h3>
+          <p>Mis ejercicios y programas en Java, con programación orientada a objetos.</p>
+          <a href="https://github.com/Carolina-r-m/Java" class="enlace" target="_blank" rel="noopener">Ver código en GitHub</a>
+        </article>
+
+        <article class="proyecto" data-categoria="php">
+          <h3>Proyectos en PHP</h3>
+          <p>Código de backend con PHP: lo que voy haciendo en el lado del servidor.</p>
+          <a href="https://github.com/Carolina-r-m/PHP" class="enlace" target="_blank" rel="noopener">Ver código en GitHub</a>
+        </article>
+
+        <article class="proyecto" data-categoria="javascript">
+          <h3>Proyectos en JavaScript</h3>
+          <p>Prácticas de JavaScript: DOM, eventos y pequeñas aplicaciones web.</p>
+          <a href="https://github.com/Carolina-r-m/JavaScript" class="enlace" target="_blank" rel="noopener">Ver código en GitHub</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO ===== -->
+    <section id="contacto" class="seccion contacto">
+      <h2>Contacto</h2>
+      <p class="texto-largo">¿Tienes un proyecto o una oportunidad? Escríbeme y lo hablamos.</p>
+      <!-- Mi correo real, para que me escriban -->
+      <a href="mailto:carolinardmuriel@gmail.com" class="btn btn-principal">carolinardmuriel@gmail.com</a>
+    </section>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie">
+    <!-- El año lo pone el JS para no tener que cambiarlo cada enero -->
+    <p>Hecho con HTML, CSS y JS por Carolina · <span id="anio"></span></p>
+  </footer>
+
+  <!-- El script va al final para que el HTML ya esté cargado cuando se ejecute -->
+  <script src="script.js"></script>
+</body>
+</html>

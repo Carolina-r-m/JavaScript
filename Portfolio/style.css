@@ -1,0 +1,441 @@
+/* =========================================================
+   ESTILOS DE MI PORTFOLIO
+   Idea: que parezca un cuaderno de cuadros con post-its,
+   como los apuntes que tengo por la mesa
+   ========================================================= */
+
+/* --- Variables CSS: así cambio los colores en un solo sitio (¡qué comodidad!) --- */
+:root {
+  --papel: #f6f2ff;          /* fondo lila muy clarito */
+  --cuadros: #ddd3f5;        /* líneas de la cuadrícula */
+  --tinta: #5b2fd6;          /* violeta principal */
+  --texto: #1d1633;          /* texto normal */
+  --margen: #ff3d9a;         /* rosa del margen */
+  --subrayador: #7df9d6;     /* menta fosforito */
+  --tarjeta: #ffffff;
+  --sombra: rgba(91, 47, 214, 0.2);
+}
+
+/* --- Modo oscuro: el JS le pone data-tema="oscuro" al <html> y estos valores pisan a los de arriba --- */
+[data-tema="oscuro"] {
+  --papel: #16112b;
+  --cuadros: #251d47;
+  --tinta: #b9a2ff;
+  --texto: #ece8fa;
+  --tarjeta: #21193d;
+  --sombra: rgba(0, 0, 0, 0.5);
+}
+
+/* --- Reset básico: el profe dice que siempre hay que quitar los márgenes por defecto --- */
+* {
+  box-sizing: border-box; /* así el padding no me rompe los anchos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Scroll suave al pulsar los enlaces del menú */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: var(--texto);
+  background-color: var(--papel);
+  /* La cuadrícula del cuaderno la hago con dos degradados lineales (truco de internet, lo confieso) */
+  background-image:
+    linear-gradient(var(--cuadros) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cuadros) 1px, transparent 1px);
+  background-size: 28px 28px;
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Línea roja del margen a la izquierda, como en los cuadernos de verdad */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 56px;
+  width: 2px;
+  background: var(--margen);
+  opacity: 0.5;
+  pointer-events: none; /* para que no bloquee los clics */
+}
+
+/* --- CABECERA --- */
+.cabecera {
+  position: sticky; /* se queda arriba al hacer scroll */
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 1.5rem 0.8rem 80px;
+  background: var(--papel);
+  border-bottom: 2px solid var(--tinta);
+}
+
+.logo {
+  font-family: "Caveat", cursive;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.cabecera nav {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.cabecera nav a {
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Al pasar el ratón sale un subrayado tipo rotulador */
+.cabecera nav a:hover {
+  background: linear-gradient(transparent 55%, var(--subrayador) 55%);
+}
+
+/* Botón del tema: redondo y sencillo */
+.btn-tema {
+  border: 2px solid var(--tinta);
+  background: var(--tarjeta);
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* --- SECCIONES GENERALES --- */
+.seccion,
+.hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 4rem 90px; /* el padding izquierdo grande es para no pisar el margen rojo */
+}
+
+h2 {
+  font-family: "Caveat", cursive;
+  font-size: 2.8rem;
+  color: var(--tinta);
+  margin-bottom: 1rem;
+}
+
+.texto-largo {
+  max-width: 60ch; /* líneas cortitas para que se lea mejor */
+  margin-bottom: 1.5rem;
+}
+
+.pista {
+  margin-bottom: 1.2rem;
+  opacity: 0.75;
+}
+
+/* --- HERO --- */
+.hero {
+  padding-top: 6rem;
+}
+
+.nota-mano {
+  font-family: "Caveat", cursive;
+  font-size: 2rem;
+  color: var(--margen);
+  transform: rotate(-3deg); /* torcidito, como escrito a mano */
+  display: inline-block;
+}
+
+h1 {
+  font-family: "Caveat", cursive;
+  font-size: clamp(3.5rem, 12vw, 7rem); /* clamp: crece con la pantalla pero con límites */
+  line-height: 1;
+  color: var(--tinta);
+  margin-bottom: 1rem;
+}
+
+.hero-texto {
+  font-size: 1.3rem;
+  line-height: 1.9; /* más interlineado para que el resaltado no se pise entre líneas */
+  max-width: 40ch;
+  min-height: 8.5rem; /* reservo altura para que la página no salte al escribir */
+}
+
+/* El rol en grande y en violeta, para que se lea lo primero */
+.rol {
+  font-family: "Caveat", cursive;
+  font-size: 2rem;
+  color: var(--tinta);
+}
+
+/* El texto que se escribe sale como si lo hubiera marcado con fosforito */
+.resaltado {
+  background: var(--subrayador);
+  color: #1d1633; /* siempre oscuro porque la menta es clara */
+  font-weight: 600;
+  padding: 0.1em 0.45em;
+  border-radius: 6px;
+  /* clone hace que si salta de línea, cada trozo conserve sus bordes y padding */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Si todavía no ha escrito nada, escondo la etiqueta vacía para que no se vea una manchita */
+.resaltado:empty {
+  display: none;
+}
+
+/* Cursor parpadeante con @keyframes (animación, ¡mola!) */
+.cursor {
+  color: var(--margen);
+  font-weight: 700;
+  margin-left: 2px;
+  animation: parpadeo 0.9s steps(1) infinite;
+}
+@keyframes parpadeo {
+  50% { opacity: 0; }
+}
+
+.hero-botones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0 1.5rem;
+}
+
+/* --- BOTONES --- */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid var(--tinta);
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-principal {
+  background: var(--tinta);
+  color: var(--papel);
+  box-shadow: 4px 4px 0 var(--sombra);
+}
+
+.btn-secundario {
+  background: var(--tarjeta);
+  color: var(--tinta);
+  box-shadow: 4px 4px 0 var(--sombra);
+}
+
+/* Al pasar el ratón el botón "se hunde" (efecto de que lo pulsas) */
+.btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 var(--sombra);
+}
+
+.btn-cafe {
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--subrayador);
+  color: #1b1f2a;
+  border: 2px dashed #1b1f2a;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+
+/* Clase que añado y quito desde JS para que el botón "salte" */
+.btn-cafe.salto {
+  animation: salto 0.35s ease;
+}
+@keyframes salto {
+  40% { transform: scale(1.12) rotate(-2deg); }
+}
+
+/* --- Ventana de código del hero: el toque friki, pero limpio --- */
+.codigo {
+  position: relative;
+  max-width: 420px;
+  margin: 0 0 1.5rem;
+  padding: 2.6rem 1.2rem 1.2rem;
+  background: #1a1233;
+  color: #efeaff;
+  border-radius: 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  overflow-x: auto; /* si no cabe, scroll dentro de la caja */
+  box-shadow: 6px 6px 0 var(--sombra);
+}
+
+/* Los tres puntitos de una ventana, hechos con una sola caja y box-shadow (truco) */
+.codigo::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f7e;
+  box-shadow: 18px 0 0 #ffd166, 36px 0 0 #7df9d6;
+}
+
+.codigo .k { color: #ff7ac6; } /* palabras reservadas */
+.codigo .s { color: #7df9d6; } /* strings */
+
+/* --- SKILLS (post-its) --- */
+.skills-grid {
+  display: grid;
+  /* auto-fit + minmax = columnas responsive sin media queries (¡Grid es lo mejor!) */
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1.5rem;
+}
+
+.post-it {
+  padding: 1.2rem;
+  color: #1b1f2a;
+  box-shadow: 4px 6px 0 var(--sombra);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+/* Colores de cada post-it */
+.amarillo { background: #ffe66d; }
+.rosa     { background: #ffb8dd; }
+.azul     { background: #cbb8ff; }
+.verde    { background: #a8f5dc; }
+
+/* Cada post-it un poquito torcido: nth-child(odd/even) alterna los giros */
+.post-it:nth-child(odd)  { transform: rotate(-2deg); }
+.post-it:nth-child(even) { transform: rotate(1.5deg); }
+.post-it:hover           { transform: rotate(0) scale(1.05); }
+
+.post-it h3 {
+  font-family: "Caveat", cursive;
+  font-size: 1.8rem;
+}
+
+.barra {
+  height: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0.4rem 0;
+}
+
+.relleno {
+  height: 100%;
+  width: 0; /* empieza vacía y el JS la llena */
+  background: #1b1f2a;
+  border-radius: 99px;
+  transition: width 1s ease;
+}
+
+.porcentaje {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* --- PROYECTOS --- */
+.filtros {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.filtro {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.4rem 1rem;
+  border: 2px solid var(--tinta);
+  background: transparent;
+  color: var(--tinta);
+  border-radius: 99px;
+  cursor: pointer;
+}
+
+/* El filtro que está seleccionado se rellena */
+.filtro.activo {
+  background: var(--tinta);
+  color: var(--papel);
+}
+
+.proyectos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.proyecto {
+  background: var(--tarjeta);
+  border: 2px solid var(--tinta);
+  border-radius: 4px;
+  padding: 1.3rem;
+  box-shadow: 5px 5px 0 var(--sombra);
+}
+
+.proyecto h3 {
+  font-family: "Caveat", cursive;
+  font-size: 1.7rem;
+  color: var(--tinta);
+}
+
+.proyecto p {
+  margin: 0.4rem 0 1rem;
+}
+
+.enlace {
+  color: var(--tinta);
+  font-weight: 600;
+}
+
+/* Clase que uso desde JS para esconder proyectos al filtrar */
+.oculto {
+  display: none;
+}
+
+/* --- PIE --- */
+.pie {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 2px solid var(--tinta);
+  background: var(--papel);
+}
+
+/* Accesibilidad: foco visible para quien navega con teclado (lo pedían en la práctica de DIW) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--margen);
+  outline-offset: 3px;
+}
+
+/* Si el usuario tiene activado "reducir movimiento", quito las animaciones */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- MEDIA QUERY para móviles (mobile first sería lo ideal, pero bueno) --- */
+@media (max-width: 640px) {
+  .cabecera {
+    padding-left: 1rem;
+    flex-wrap: wrap;
+  }
+  /* En móvil la línea roja se mueve para no comer espacio */
+  body::before { left: 20px; }
+  .seccion,
+  .hero {
+    padding-left: 40px;
+    padding-right: 1rem;
+  }
+}
