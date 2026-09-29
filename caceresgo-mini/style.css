@@ -1,0 +1,57 @@
+/* Colores inspirados en el tema Dracula de VS Code */
+:root {
+  --bg:#282a36; --panel:#21222c; --linea:#44475a; --texto:#f8f8f2;
+  --comentario:#6272a4; --rosa:#ff79c6; --verde:#50fa7b; --morado:#bd93f9;
+  --naranja:#ffb86c; --cian:#8be9fd;
+}
+
+* { box-sizing:border-box; }
+body { margin:0; padding:1rem; background:#191a21; color:var(--texto);
+       font-family:"Fira Code","JetBrains Mono",Consolas,monospace; font-size:14px; }
+
+.ventana { max-width:680px; margin:0 auto; background:var(--bg);
+           border:1px solid var(--linea); border-radius:10px; overflow:hidden;
+           box-shadow:0 10px 40px #0008; }
+
+/* Barra superior con los tres puntos de una ventana */
+.barra { display:flex; align-items:center; gap:6px; padding:.5rem .8rem; background:var(--panel); }
+.dot { width:12px; height:12px; border-radius:50%; }
+.rojo{background:#ff5555} .amarillo{background:#f1fa8c} .verde{background:#50fa7b}
+.titulo { flex:1; text-align:center; color:var(--comentario); font-size:12px; }
+
+/* Pestañas que imitan un editor de código */
+.pestanas { display:flex; background:var(--panel); border-bottom:1px solid var(--linea); }
+.tab { padding:.4rem .9rem; color:var(--comentario); font-size:12px; }
+.tab.activa { background:var(--bg); color:var(--texto); border-top:2px solid var(--rosa); }
+
+/* Marcador con colores parecidos a los del código */
+.hud { margin:0; padding:.8rem 1rem; line-height:1.6; }
+.c{color:var(--comentario)} .k{color:var(--rosa)} .v{color:var(--cian)} .n{color:var(--morado)}
+
+#mapa { width:100%; display:block; touch-action:none; cursor:crosshair;
+        border-block:1px solid var(--linea); }
+#muralla { fill:#2f3142; stroke:var(--rosa); stroke-width:2.5; stroke-dasharray:8 6; }
+
+/* Los monumentos tienen una animación hasta que los descubro */
+.poi { fill:var(--naranja); animation:latido 1.6s ease-in-out infinite;
+       transform-box:fill-box; transform-origin:center; }
+.poi.visitado { fill:var(--verde); animation:none; }
+.etiqueta { fill:var(--comentario); font-size:10px; text-anchor:middle; pointer-events:none; font-family:inherit; }
+@keyframes latido { 50% { transform:scale(1.35); opacity:.7; } }
+#jugador { fill:var(--cian); stroke:var(--texto); stroke-width:2; }
+
+/* Zona de la terminal del juego */
+.terminal { background:var(--panel); padding:.5rem 1rem; }
+.terminal-tit { color:var(--comentario); font-size:11px; letter-spacing:1px; margin-bottom:.3rem; }
+#log { height:110px; overflow-y:auto; font-size:12px; }
+#log p { margin:.15rem 0; }
+.prompt { color:var(--verde); }
+.ok { color:var(--verde); } .aviso { color:var(--naranja); }
+
+button { margin:.6rem 1rem 1rem; padding:.5rem 1rem; border:1px solid var(--rosa); border-radius:6px;
+         background:transparent; color:var(--rosa); font-family:inherit; cursor:pointer; }
+button:hover { background:var(--rosa); color:var(--bg); }
+
+dialog { border:1px solid var(--morado); border-radius:10px; background:var(--bg); color:var(--texto);
+         font-family:inherit; max-width:320px; }
+dialog::backdrop { background:#000a; }

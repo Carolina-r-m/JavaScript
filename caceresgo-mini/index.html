@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>caceresgo-mini — Visual Studio Code</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Diseño la página como si fuera un editor de código -->
+  <div class="ventana">
+    <div class="barra">
+      <span class="dot rojo"></span><span class="dot amarillo"></span><span class="dot verde"></span>
+      <span class="titulo">caceresgo-mini — Visual Studio Code</span>
+    </div>
+
+    <div class="pestanas">
+      <span class="tab activa">📄 index.html</span>
+      <span class="tab">📜 script.js</span>
+      <span class="tab">🎨 style.css</span>
+    </div>
+
+    <!-- El marcador tiene aspecto de variables de código -->
+    <pre class="hud"><span class="c">// estado actual del juego</span>
+<span class="k">let</span> <span class="v">puntos</span> = <b id="puntos" class="n">0</b>;
+<span class="k">let</span> <span class="v">visitados</span> = <b id="progreso" class="n">0/5</b>;
+<span class="k">const</span> <span class="v">record</span> = <b id="record" class="n">0</b>;</pre>
+
+    <svg id="mapa" viewBox="0 0 600 400" aria-label="Mapa de la ciudad monumental">
+      <!-- Cuadrícula de fondo para que parezca un mapa técnico -->
+      <defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M20 0H0V20" fill="none" stroke="#2b2d3b" stroke-width="1"/></pattern></defs>
+      <rect width="600" height="400" fill="url(#grid)"/>
+      <path id="muralla" d="M60,200 Q80,60 300,50 Q520,60 540,200 Q520,340 300,350 Q80,340 60,200Z"/>
+      <g id="pois"></g>
+      <circle id="jugador" r="9" cx="300" cy="200"/>
+    </svg>
+
+    <!-- Aquí voy mostrando los eventos de la partida -->
+    <div class="terminal">
+      <div class="terminal-tit">TERMINAL</div>
+      <div id="log"><p><span class="prompt">carolina@daw:~/caceresgo$</span> npm start</p></div>
+    </div>
+
+    <button id="reiniciar">$ git reset --hard</button>
+  </div>
+
+  <dialog id="tarjeta"><h2 id="tNombre"></h2><p id="tDato"></p><button id="cerrar">git push 🚀</button></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
